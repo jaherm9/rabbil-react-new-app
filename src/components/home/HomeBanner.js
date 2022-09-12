@@ -2,27 +2,48 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 const HomeBanner = () => {
-
-    let [todo, SetTodo] = useState([])
-useEffect(()=>{             // useEffect are use for load component data Automatically
-
-    // API Call
-    // axios.get().then().catch()
-    axios.get("https://jsonplaceholder.typicode.com/todos")
-        .then((res)=>{
-            setTimeout(()=>{
+    const [todo, SetTodo] = useState([])
+    useEffect(()=>{
+        axios.get("https://jsonplaceholder.typicode.com/todos")
+            .then((res)=>{
                 SetTodo(res.data)
-            }, 3000)
         })
-        .catch((err)=>{
+            .catch((err)=>{
 
         })
+    },[])      //[] penalty array used for stop auto recalling
+
+const MyList = todo.map((list,i)=>{
+    return(
+        <tr>
+            <td>{list['userId']}</td>
+            <td>{list['id']}</td>
+            <td>{list['title']}</td>
+            <td><button className="btn btn-danger">Delete</button></td>
+            <td><button className="btn btn-primary">Edit</button></td>
+            <td><button className="btn btn-success">Details</button></td>
+        </tr>
+    )
 })
-    return (
-        <div>
-            {JSON.stringify(todo)}
-        </div>
-    );
+        return (
+            <div>
+                <table className="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th> User Id</th>
+                        <th> Id</th>
+                        <th> Title</th>
+                        <th> Delete</th>
+                        <th> Edit</th>
+                        <th> Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {MyList}
+                    </tbody>
+                </table>
+            </div>
+        );
 };
 
 export default HomeBanner;
