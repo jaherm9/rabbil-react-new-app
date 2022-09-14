@@ -1,3 +1,68 @@
+import React, {Component} from 'react';
+
+class HomeBanner extends Component {
+
+    constructor() {
+        super();
+
+        /*// state in class component
+        this.state={
+        color:"Red"
+        }*/
+    }
+
+    // use Ref in class component
+    MyClick=()=>{
+        let text = this.MyText.value;
+        alert(text)
+    }
+
+    render() {
+        // use Ref in class component
+        return(
+            <div>
+                <input ref={(abc)=>{this.MyText=abc}} className="form-control" type="text"/>
+                <br/>
+                <button className="btn btn-success" onClick={this.MyClick}>Submit</button>
+            </div>
+
+
+        //state in class component
+        // useState only use in functional component
+
+        /*
+        return (
+            <div>
+                <h1>{this.state.color}</h1>
+                <button onClick={()=>this.setState({color:"Blue"})}>Blue</button>
+                <button onClick={()=>this.setState({color:"Red"})}>Red</button>
+                <button onClick={()=>this.setState({color:"Green"})}>Green</button>
+            </div>
+            */
+
+
+    /*render() {
+        return (
+            // object pass in class component
+            <div>
+                <h1>{this.props.name}</h1>
+                <p>{this.props.age}</p>
+            </div>*/
+
+            // object pass by props in functional component
+            /*
+            <div>
+                <h1>props.title.name</h1>
+                <h1>props.title.age</h1>
+            </div>
+            */
+        )
+    }
+}
+
+export default HomeBanner;
+// functional component
+/*
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -37,10 +102,10 @@ const MyList = todo.map((list,i)=>{
             <td>{list['id']}</td>
             <td>{list['title']}</td>
             <td><button onClick={DeleteEvent.bind(this,list['id'])} className="btn btn-danger">Delete</button></td>
-            // use bind and this for prevent random selection
             <td><button onClick={EditEvent.bind(this,list['id'])} className="btn btn-primary">Edit</button></td>
             <td><button onClick={DetailsEvent.bind(this,list['id'])} className="btn btn-success">Details</button></td>
         </tr>
+
     )
 })
         return (
@@ -65,3 +130,4 @@ const MyList = todo.map((list,i)=>{
 };
 
 export default HomeBanner;
+*/
